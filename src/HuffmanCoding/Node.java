@@ -1,4 +1,5 @@
 package HuffmanCoding;
+
 class Node {
     byte data;
     int freq;

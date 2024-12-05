@@ -1,4 +1,5 @@
 package HuffmanCoding;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.io.ByteArrayOutputStream;
-
 
 public class Huffman {
 
@@ -79,46 +79,39 @@ public class Huffman {
     public static byte[] decodeData(String encodedData) {
         ByteArrayOutputStream decoded = new ByteArrayOutputStream();
         int index = -1;
-        while (index < encodedData.length() - 2) {
+        while (index < encodedData.length() - 1) {
             index = decode(root, index, new StringBuilder(encodedData), decoded);
         }
         return decoded.toByteArray();
     }
 
-    public static void main(String[] args) throws IOException {
-        // Пример для текста
-        String text = "\n" +
-                "### 1. Хаффмановское кодирование\n" +
-                "2. **Последний столбец:** Возьмите последний столбец отсортированных строк — это и есть преобразование BWT.\n";
-        byte[] textData = text.getBytes();
-        buildHuffmanTree(textData);
-        String encodedText = encodeData(textData);
-        byte[] decodedText = decodeData(encodedText);
-        System.out.println("Original size: " + textData.length + " bytes");
-        System.out.println("Compressed size: " + (encodedText.length() / 8) + " bytes");
-        System.out.println("Decoded text: " + new String(decodedText));
+    public static void main(String[] args) {
+        try {
+            // Example for text
+            String text = "Huffman coding is a data compression algorithm.";
+            byte[] textData = text.getBytes();
+            buildHuffmanTree(textData);
+            String encodedText = encodeData(textData);
+            byte[] decodedText = decodeData(encodedText);
+            System.out.println("Original text size: " + textData.length + " bytes");
+            System.out.println("Compressed text size: " + encodedText.length() / 8 + " bytes");
+            System.out.println("Decoded text: " + new String(decodedText));
 
-System.out.println(decodedText.length);
+            // Example for images
+            String imagePath = "E:\\Юлька\\IMG_20220323_204502_809.JPG";  // Update the path accordingly
+            BufferedImage image = ImageIO.read(new File(imagePath));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, "jpg", baos);
+            byte[] imageData = baos.toByteArray();
+            buildHuffmanTree(imageData);
+            String encodedImage = encodeData(imageData);
+            byte[] decodedImage = decodeData(encodedImage);
+            System.out.println("Original image size: " + imageData.length + " bytes");
+            System.out.println("Compressed image size: " + encodedImage.length() / 8 + " bytes");
+            System.out.println("Decoded image size: " + decodedImage.length + " bytes");
 
-        // Пример для изображений (замените imageData на данные вашего изображения)
-        String imagePath = "E:\\5 сем\\курсач\\testPhoto\\src\\IMG_20220323_204822_823.jpg";
-        BufferedImage image = ImageIO.read(new File(imagePath));
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(image, "jpg", baos);
-        byte [] imageData = baos.toByteArray();
-
-        //String loadedFile = "";
-        //BufferedImage image = ImageIO.read(loadedFile);
-        //loadedFileData = bufferedImageToByteArray(image, getFileExtension(loadedFile));
-      //byte [] imageData = {1,2,3,4,5,6,6,7,8,4,66,98};
-        buildHuffmanTree(imageData);
-        String encodedImage = encodeData(imageData);
-        byte[] decodedImage = decodeData(encodedImage);
-        System.out.println("Original image size: " + imageData.length + " bytes");
-        System.out.println("Compressed image size: " + (encodedImage.length() / 8) + " bytes");
-        System.out.println(decodedImage.length);
-
-
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

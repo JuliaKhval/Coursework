@@ -44,7 +44,7 @@ public class RLE {
     }
 
     public static void main(String[] args) throws IOException {
-        byte[] input = "hellohellohellossssssssssssaaaaaaaaaaaaaaasssssssssssssaaaaaaaaaaaa".getBytes(); // Пример данных для сжатия
+        byte[] input = "hellohellohellossssssssssssaaaaaaaaaaaaaaasssssssssssssaaaaaaaaaaaaaaaaaaaddddddddd".getBytes(); // Пример данных для сжатия
 
         long startTime, endTime;
         int initialMemory, compressedMemory, decompressedMemory;

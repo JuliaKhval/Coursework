@@ -7,7 +7,7 @@ import java.util.*;
 
 public class ShannonFano {
 
-    private static class Node {
+    static class Node {
         byte symbol;
         int frequency;
         Node left, right;
@@ -24,7 +24,7 @@ public class ShannonFano {
         }
     }
 
-    private static void buildCodes(Node node, String code, Map<Byte, String> codes) {
+    static void buildCodes(Node node, String code, Map<Byte, String> codes) {
         if (node.left == null && node.right == null) {
             codes.put(node.symbol, code);
             return;
@@ -33,7 +33,7 @@ public class ShannonFano {
         buildCodes(node.right, code + '1', codes);
     }
 
-    private static byte[] compress(byte[] data, Map<Byte, String> codes) {
+    static byte[] compress(byte[] data, Map<Byte, String> codes) {
         StringBuilder encodedData = new StringBuilder();
         for (byte b : data) {
             encodedData.append(codes.get(b));
@@ -50,7 +50,7 @@ public class ShannonFano {
         return compressedData;
     }
 
-    private static byte[] decompress(byte[] compressedData, Map<Byte, String> codes) {
+    static byte[] decompress(byte[] compressedData, Map<Byte, String> codes) {
         Map<String, Byte> reversedCodes = new HashMap<>();
         for (Map.Entry<Byte, String> entry : codes.entrySet()) {
             reversedCodes.put(entry.getValue(), entry.getKey());

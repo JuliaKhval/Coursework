@@ -43,7 +43,7 @@ public class Deflate {
     }
 
     public static void main(String[] args) throws Exception {
-        byte[] input = "hellohellohellossssssssssssaaaaaaaaaaaaaaasssssssssssssaaaaaaaaaaaa".getBytes(); // Пример данных для сжатия
+        byte[] input = "Generating random paragraphs can be an excellent way for writers to get their creative flow going at the beginning of the day. The writer has no idea what topic the random paragraph will be about when it appears. This forces the writer to use creativity to complete one of three common writing challenges. The writer can use the paragraph as the first one of a short story and build upon it. A second option is to use the random paragraph somewhere in a short story they create. The third option is to have the random paragraph be the ending paragraph in a short story. No matter which of these challenges is undertaken, the writer is forced to use creativity to incorporate the paragraph into their writing".getBytes(); // Пример данных для сжатия
 
         long startTime, endTime;
         int initialDataSize = input.length;
@@ -59,7 +59,7 @@ public class Deflate {
         System.out.println("Объем данных после сжатия: " + compressedDataSize + " байт");
 
         // Измеряем время выполнения декомпрессии и объем данных после декомпрессии
-        startTime = System.nanoTime();
+        startTime = System.nanoTime ();
         byte[] decompressed = decompress(compressed);
         endTime = System.nanoTime();
         int decompressedDataSize = decompressed.length;

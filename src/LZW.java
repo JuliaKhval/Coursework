@@ -8,7 +8,7 @@ public class LZW {
     private static final int MAX_DICT_SIZE = 4096;
 
     public static void main(String[] args) throws Exception {
-        byte[] input = "фыфыфыфыфыфыфыыфыфыфыыфыфыфыфыфыфыфыфыфыфыфыфы".getBytes(); // Пример данных для сжатия
+        byte[] input = "aaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbccccccccccc".getBytes(); // Пример данных для сжатия
 
         long startTime, endTime;
         int initialDataSize = input.length;
@@ -17,7 +17,7 @@ public class LZW {
         startTime = System.nanoTime();
         List<Integer> compressed = compress(input);
         endTime = System.nanoTime();
-        int compressedDataSize = compressed.size() * 4;
+        int compressedDataSize = compressed.size() ;
 
         System.out.println("Время сжатия: " + (endTime - startTime) + " нс");
         System.out.println("Объем данных до сжатия: " + initialDataSize + " байт");
@@ -45,7 +45,7 @@ public class LZW {
         startTime = System.nanoTime();
         List<Integer> compressedImage = compress(imageData);
         endTime = System.nanoTime();
-        int compressedImageDataSize = compressedImage.size() * 4;
+        int compressedImageDataSize = compressedImage.size() ;
 
         System.out.println("Время сжатия изображения: " + (endTime - startTime) + " нс");
         System.out.println("Объем изображения до сжатия: " + initialImageDataSize + " байт");
